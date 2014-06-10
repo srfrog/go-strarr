@@ -1,3 +1,7 @@
+// Copyright 2014 Codehack.com All rights reserved.
+// Use of this source code is governed by a MIT-style
+// license that can be found in the LICENSE file.
+
 package strarr
 
 import (
@@ -113,35 +117,35 @@ func TestMap(t *testing.T) {
 	e := strings.Join(arr2, "")
 	m := strings.Join(Map(mapping, arr), "")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestToUpper(t *testing.T) {
 	e := "LOREMIPSUMDOLORSITAMET"
 	m := strings.Join(ToUpper(arr[:5]), "")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestTolower(t *testing.T) {
 	e := "loremipsumdolorsitamet"
 	m := strings.Join(ToLower(arr[:5]), "")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestToTitle(t *testing.T) {
 	e := "LoremIpsumDolorSitAmet"
 	m := strings.Join(ToTitle(arr[:5]), "")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestTrim(t *testing.T) {
 	e := "*L**i**d**s**c*"
 	m := strings.Join(Trim(arr2[:7], "*a*"), "")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestTrimFunc(t *testing.T) {
@@ -149,28 +153,28 @@ func TestTrimFunc(t *testing.T) {
 	f := func(v, s string) bool { return strings.Contains(v, s) }
 	m := strings.Join(TrimFunc(arr2[:7], "a", f), "")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestTrimPrefix(t *testing.T) {
 	e := "*L**i**d**s**c*"
 	m := strings.Join(TrimPrefix(arr2[:7], "*a"), "")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestTrimSuffix(t *testing.T) {
 	e := "*L**i**d**s**c*"
 	m := strings.Join(TrimSuffix(arr2[:7], "a*"), "")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestFilter(t *testing.T) {
 	e := "*a**a*"
 	m := strings.Join(Filter(arr2[:7], "*a*"), "")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestFilterFunc(t *testing.T) {
@@ -178,112 +182,139 @@ func TestFilterFunc(t *testing.T) {
 	f := func(v, s string) bool { return strings.Contains(v, s) }
 	m := strings.Join(FilterFunc(arr2[:7], "a", f), "")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestFilterPrefix(t *testing.T) {
 	e := "*a**a*"
 	m := strings.Join(FilterPrefix(arr2[:7], "*a"), "")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestFilterSuffix(t *testing.T) {
 	e := "*a**a*"
 	m := strings.Join(FilterSuffix(arr2[:7], "a*"), "")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestDiff(t *testing.T) {
 	e := "*i**s**c*"
 	m := strings.Join(Diff(arr2[:6], arr2[6:]), "")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestIntersect(t *testing.T) {
 	e := "*L**d**a*"
 	m := strings.Join(Intersect(arr2[:6], arr2[6:]), "")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestRepeat(t *testing.T) {
 	e := "loremloremloremloremlorem"
 	m := strings.Join(Repeat("lorem", 5), "")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestReplace(t *testing.T) {
 	e := "Lorem ipsum dolor sit amet"
 	m := strings.Join(Replace(arr2[:2], arr[:5]), " ")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 	e = "*L* *i* dolor sit amet"
 	m = strings.Join(Replace(arr[:5], arr2[:2]), " ")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 	e = "Lorem ipsum dolor"
-	m = strings.Join(Replace([]string{}, arr[:3]), " ")
+	m = strings.Join(Replace(nil, arr[:3]), " ")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 	e = "*L* *i* *d*"
-	m = strings.Join(Replace(arr2[:3], []string{}), " ")
+	m = strings.Join(Replace(arr2[:3], nil), " ")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 	e = ""
-	m = strings.Join(Replace([]string{}, []string{}), " ")
+	m = strings.Join(Replace(nil, nil), " ")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestRand(t *testing.T) {
+	e := 5
 	m := Rand(arr, 5)
-	if len(m) != 5 {
-		t.Error("failed")
+	if len(m) != e {
+		t.Errorf("expecting %d got %d", e, m)
 	}
 }
 func TestShuffle(t *testing.T) {
 	e := strings.Join(arr, "")
 	m := strings.Join(Shuffle(arr), "")
 	if m == e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestReverse(t *testing.T) {
-	e := "Lorem ipsum dolor sit amet"
-	m := strings.Join(Reverse(Reverse(arr[:5])), " ")
+	e := "amet sit dolor ipsum Lorem"
+	m := strings.Join(Reverse(arr[:5]), " ")
 	if m != e {
-		t.Error("failed")
+		t.Errorf("expecting %q got %q", e, m)
+	}
+	e = "Lorem ipsum dolor sit amet"
+	m = strings.Join(Reverse(Reverse(arr[:5])), " ")
+	if m != e {
+		t.Errorf("expecting %q got %q", e, m)
+	}
+	e = ""
+	m = strings.Join(Reverse(nil), " ")
+	if m != e {
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestShift(t *testing.T) {
+	e := "ipsum"
 	m := Shift(&arr)
-	if m != "Lorem" || arr[0] != "ipsum" {
-		t.Error("failed")
+	if m != "Lorem" || arr[0] != e {
+		t.Errorf("expecting %q got %q", e, m)
+	}
+	bar := []string{"something"}
+	e = ""
+	m = Shift(&bar)
+	if m != "something" || len(bar) != 0 {
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestUnshift(t *testing.T) {
+	e := "Lorem"
 	m := Unshift(&arr, "Lorem")
-	if m != 11 || arr[0] != "Lorem" {
-		t.Error("failed")
+	if m != 11 || arr[0] != e {
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestPop(t *testing.T) {
+	e := "tempus"
 	m := Pop(&arr)
-	if m != "Lorem" || arr[9] != "tempus" {
-		t.Error("failed")
+	if m != "Lorem" || arr[9] != e {
+		t.Errorf("expecting %q got %q", e, m)
+	}
+	bar := []string{"something"}
+	e = ""
+	m = Pop(&bar)
+	if m != "something" || len(bar) != 0 {
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
 func TestPush(t *testing.T) {
+	e := "Lorem"
 	m := Push(&arr, "Lorem")
-	if m != 11 || arr[10] != "Lorem" {
-		t.Error("failed")
+	if m != 11 || arr[10] != e {
+		t.Errorf("expecting %q got %q", e, m)
 	}
 }
