@@ -25,9 +25,6 @@ Then import:
 
 ## Example
 
-// This example shows basic usage of various functions by manipulating
-// the array 'arr'.
-
 ``` go
 package main
 

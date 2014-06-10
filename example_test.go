@@ -68,4 +68,6 @@ func Example_basic() {
 	// [Go]
 	// [Go for nuts Really]
 }
+// Testing file strarr_test.go has plenty of tests to
+// serve as examples too. Enjoy.
 
