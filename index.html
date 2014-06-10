@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Go-strarr by codehack</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Go-strarr</h1>
+        <p>Various operations with string arrays for Go</p>
+
+        <p class="view"><a href="https://github.com/codehack/go-strarr">View the Project on GitHub <small>codehack/go-strarr</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/codehack/go-strarr/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/codehack/go-strarr/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/codehack/go-strarr">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="go-strarr-" class="anchor" href="#go-strarr-"><span class="octicon octicon-link"></span></a>Go-StrArr <a href="https://godoc.org/github.com/codehack/go-strarr"><img src="https://godoc.org/github.com/codehack/go-strarr?status.png" alt="GoDoc"></a>
+</h1>
+
+<p><em>Various operations for string slices for <a href="http://golang.org">Go</a></em></p>
+
+<p><strong>Go-StrArr</strong> is a collection of functions that operate on string slices. Most are functions from <code>package strings</code> that have been adapted to work with string slices, and some were ported from PHP array_* functions.</p>
+
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>Using a thin layer of idiomatic Go; correctness over performance.</li>
+<li>Provide most basic array-ish operations: index, trim, filter, map</li>
+<li>Some PHP favorites like: pop, push, shift, unshift, shuffle, etc...</li>
+<li>Non-destructive returns (won't alter original slice), except for explicit tasks.</li>
+<li>The perfect companion to work with <code>net/http</code> headers!</li>
+</ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Using "go get":</p>
+
+<pre><code>go get github.com/codehack/go-strarr
+</code></pre>
+
+<p>Then import:</p>
+
+<pre><code>import ("github.com/codehack/go-strarr")
+</code></pre>
+
+<h2>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
+
+<div class="highlight highlight-go"><pre><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span><span class="p">(</span>
+   <span class="s">"github.com/codehack/go-strarr"</span>
+   <span class="s">"fmt"</span>
+<span class="p">)</span>
+
+<span class="c1">// This example shows basic usage of various functions by manipulating</span>
+<span class="c1">// the array 'arr'.</span>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+   <span class="nx">arr</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"Go"</span><span class="p">,</span> <span class="s">"nuts"</span><span class="p">,</span> <span class="s">"for"</span><span class="p">,</span> <span class="s">"Go"</span><span class="p">}</span>
+
+   <span class="nx">foo</span> <span class="o">:=</span> <span class="nx">strarr</span><span class="p">.</span><span class="nx">Repeat</span><span class="p">(</span><span class="s">"Go"</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span>
+
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">strarr</span><span class="p">.</span><span class="nx">Count</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="s">"Go"</span><span class="p">))</span>
+
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">strarr</span><span class="p">.</span><span class="nx">Index</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="s">"Go"</span><span class="p">))</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">strarr</span><span class="p">.</span><span class="nx">LastIndex</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="s">"Go"</span><span class="p">))</span>
+
+   <span class="k">if</span> <span class="nx">strarr</span><span class="p">.</span><span class="nx">Contains</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="s">"nuts"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">arr</span> <span class="p">=</span> <span class="nx">strarr</span><span class="p">.</span><span class="nx">Replace</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"Insanely"</span><span class="p">})</span>
+   <span class="p">}</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>
+
+   <span class="nx">str</span> <span class="o">:=</span> <span class="nx">strarr</span><span class="p">.</span><span class="nx">Shift</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">arr</span><span class="p">)</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>
+
+   <span class="nx">strarr</span><span class="p">.</span><span class="nx">Unshift</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">arr</span><span class="p">,</span> <span class="s">"Really"</span><span class="p">)</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>
+
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">strarr</span><span class="p">.</span><span class="nx">ToUpper</span><span class="p">(</span><span class="nx">arr</span><span class="p">))</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">strarr</span><span class="p">.</span><span class="nx">ToLower</span><span class="p">(</span><span class="nx">arr</span><span class="p">))</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">strarr</span><span class="p">.</span><span class="nx">ToTitle</span><span class="p">(</span><span class="nx">arr</span><span class="p">))</span>
+
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">strarr</span><span class="p">.</span><span class="nx">Trim</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span><span class="s">"Really"</span><span class="p">))</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">strarr</span><span class="p">.</span><span class="nx">Filter</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span><span class="s">"Go"</span><span class="p">))</span>
+
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">strarr</span><span class="p">.</span><span class="nx">Diff</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span><span class="nx">foo</span><span class="p">))</span>
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">strarr</span><span class="p">.</span><span class="nx">Intersect</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span><span class="nx">foo</span><span class="p">))</span>
+
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">strarr</span><span class="p">.</span><span class="nx">Rand</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+
+   <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">strarr</span><span class="p">.</span><span class="nx">Reverse</span><span class="p">(</span><span class="nx">arr</span><span class="p">))</span>
+<span class="p">}</span>
+
+</pre></div>
+
+<p>See the testing source <a href="https://github.com/codehack/go-strarr/blob/master/strarr_test.go">strarr_test.go</a> for more examples.</p>
+
+<h2>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>The full code documentation is located at GoDoc:</p>
+
+<p><a href="http://godoc.org/github.com/codehack/go-strarr">http://godoc.org/github.com/codehack/go-strarr</a></p>
+
+<p><strong>Go-StrArr</strong> is Copyright (c) 2014 <a href="http://codehack.com">Codehack</a>.
+Published under <a href="https://raw.githubusercontent.com/codehack/go-strarr/master/LICENSE">MIT License</a></p>
+
+<p><em>Go nuts for Go!</em></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/codehack">codehack</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
