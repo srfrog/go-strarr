@@ -11,7 +11,6 @@ package strarr
 import (
 	"math/rand"
 	"strings"
-	"time"
 )
 
 // streq just compares 2 strings, used as base comparison.
@@ -245,7 +244,11 @@ func Replace(a, b []string) []string {
 	return c
 }
 
-// Rand returns a slice with 'n' number of random entries of 'a'
+// Rand returns a slice with 'n' number of random entries of 'a'.
+// Note: You may want initialize the rand seed once in your program.
+//
+//    rand.Seed(time.Now().UnixNano())
+//
 func Rand(a []string, n int) []string {
 	m := len(a)
 	b := make([]string, n)
@@ -259,6 +262,10 @@ func Rand(a []string, n int) []string {
 }
 
 // Shuffle returns a slice with randomized order of elements in 'a'.
+// Note: You may want initialize the rand seed once in your program.
+//
+//    rand.Seed(time.Now().UnixNano())
+//
 func Shuffle(a []string) []string {
 	m := len(a)
 	b := make([]string, m)
@@ -319,9 +326,4 @@ func Push(a *[]string, s ...string) int {
 		*a = append(*a, s...)
 	}
 	return len(*a)
-}
-
-func init() {
-	// randomize the default seed
-	rand.Seed(time.Now().UnixNano())
 }
