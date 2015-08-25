@@ -83,7 +83,7 @@ The full code documentation is located at GoDoc:
 
 [http://godoc.org/github.com/codehack/go-strarr](http://godoc.org/github.com/codehack/go-strarr)
 
-**Go-StrArr** is Copyright (c) 2014 [Codehack](http://codehack.com).
+**Go-StrArr** is Copyright (c) 2014-present [Codehack](http://codehack.com).
 Published under [MIT License](https://raw.githubusercontent.com/codehack/go-strarr/master/LICENSE)
 
 _Go nuts for Go!_

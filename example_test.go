@@ -1,12 +1,13 @@
-// Copyright 2014 Codehack.com All rights reserved.
+// Copyright 2014-present Codehack. All rights reserved.
+// For mobile and web development visit http://codehack.com
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
 package strarr_test
 
-import(
-	"github.com/codehack/go-strarr"
+import (
 	"fmt"
+	"github.com/codehack/go-strarr"
 )
 
 // This example shows basic usage of various functions by manipulating
@@ -14,7 +15,7 @@ import(
 func Example_basic() {
 	arr := []string{"Go", "nuts", "for", "Go"}
 
-	foo := strarr.Repeat("Go",3)
+	foo := strarr.Repeat("Go", 3)
 	fmt.Println(foo)
 
 	fmt.Println(strarr.Count(arr, "Go"))
@@ -38,17 +39,18 @@ func Example_basic() {
 	fmt.Println(strarr.ToLower(arr))
 	fmt.Println(strarr.ToTitle(arr))
 
-	fmt.Println(strarr.Trim(arr,"Really"))
-	fmt.Println(strarr.Filter(arr,"Go"))
+	fmt.Println(strarr.Trim(arr, "Really"))
+	fmt.Println(strarr.Filter(arr, "Go"))
 
-	fmt.Println(strarr.Diff(arr,foo))
-	fmt.Println(strarr.Intersect(arr,foo))
+	fmt.Println(strarr.Diff(arr, foo))
+	fmt.Println(strarr.Intersect(arr, foo))
 
 	// this will return 2 random elements from arr
 	// but it will fail testing, so...
 	// fmt.Println(strarr.Rand(arr,2))
 
 	fmt.Println(strarr.Reverse(arr))
+	// fmt.Println(strarr.Shuffle(arr))
 
 	// Output:
 	// [Go Go Go]
@@ -68,6 +70,6 @@ func Example_basic() {
 	// [Go]
 	// [Go for nuts Really]
 }
+
 // Testing file strarr_test.go has plenty of tests to
 // serve as examples too. Enjoy.
-

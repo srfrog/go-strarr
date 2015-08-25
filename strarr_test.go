@@ -1,4 +1,5 @@
-// Copyright 2014 Codehack.com All rights reserved.
+// Copyright 2014-present Codehack. All rights reserved.
+// For mobile and web development visit http://codehack.com
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
@@ -251,7 +252,7 @@ func TestRand(t *testing.T) {
 	e := 5
 	m := Rand(arr, 5)
 	if len(m) != e {
-		t.Errorf("expecting %d got %d", e, m)
+		t.Errorf("expecting %d got %d", e, len(m))
 	}
 }
 func TestShuffle(t *testing.T) {
